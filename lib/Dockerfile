@@ -1,12 +1,9 @@
 FROM busybox
 
-RUN mkdir -p /app/lib
+RUN mkdir -p /build/lib
 
-RUN cat <<EOF > /app/lib/test
+RUN cat <<EOF > /build/lib/test
 #/bin/bash
 echo So, like, hello?
 EOF
 
-RUN chmod +x /app/lib/test
-
-WORKDIR /app

@@ -1,11 +1,12 @@
 kind: Module
 type: container
 name: lib
+include: [.]
 tasks:
   - name: build-lib-artifacts
-    command: [echo, "building artifacts..."]
+    command: ['true']
     artifacts:
-      - source: /app/lib/*
+      - source: /build/lib/*
         target: lib-artifacts
 ---
 kind: Module
@@ -21,8 +22,7 @@ tasks:
       - /bin/sh
       - -c
       - |-
-        echo "why?"
-        mkdir -p build/lib
-        cp -r ../.garden/artifacts/lib-artifacts/* build/lib/
+        'mkdir -p build/lib'
+        'cp -r ../.garden/artifacts/lib-artifacts/* build/lib/'
 
 
