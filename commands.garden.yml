@@ -1,0 +1,8 @@
+kind: Command
+name: test-lib
+description:
+  short: run test script from artifiacts
+gardenCommand:
+  - exec
+  - app
+  - /bin/sh /usr/share/nginx/html/lib/test

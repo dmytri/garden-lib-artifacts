@@ -1,0 +1,7 @@
+kind: Project
+name: lib-artifacts
+environments:
+  - name: default
+providers:
+  - name: local-kubernetes
+    buildMode: cluster-buildkit

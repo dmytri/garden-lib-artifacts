@@ -1,0 +1,9 @@
+kind: Module
+type: container
+name: lib
+tasks:
+  - name: build-lib-artifacts
+    command: [echo, "building artifacts..."]
+    artifacts:
+      - source: /app/lib/*
+        target: lib-artifacts
