@@ -1,15 +1,18 @@
 kind: Module
 type: container
 name: app
-include: [.]
+build:
+  dependencies:
+      - name: copy-lib
+        copy:
+          - source: build/lib
+            target: src/lib
 services:
   - name: app
     devMode:
       sync:
         - target: /usr/share/nginx/html/
           source: src/
-    dependencies:
-        - copy-lib
     ports:
       - name: http
         containerPort: 8080
@@ -17,22 +20,3 @@ services:
     ingresses:
       - path: /
         port: http
----
-kind: Module
-type: exec
-name: copy-lib
-local: true
-include: [.]
-tasks:
-  - name: copy-lib
-    dependencies:
-      - build-lib-artifacts
-    command:
-      - /bin/dh
-      - -c
-      - |-
-        echo "why?"
-        mkdir -p src/lib
-        cp -r ../.garden/artifacts/lib-artifacts/* src/lib/
-
-

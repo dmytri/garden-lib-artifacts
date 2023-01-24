@@ -7,3 +7,22 @@ tasks:
     artifacts:
       - source: /app/lib/*
         target: lib-artifacts
+---
+kind: Module
+type: exec
+name: copy-lib
+local: true
+include: [.]
+tasks:
+  - name: copy-lib
+    dependencies:
+      - build-lib-artifacts
+    command:
+      - /bin/sh
+      - -c
+      - |-
+        echo "why?"
+        mkdir -p build/lib
+        cp -r ../.garden/artifacts/lib-artifacts/* build/lib/
+
+
