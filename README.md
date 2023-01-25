@@ -8,15 +8,16 @@
 
 ### Why
 You have some assets built in one module you would like to make availale to one
-or more pods, such as libraries, fixtures, utilties, protocol buffers, etc.
+or more other modules, such as libraries, fixtures, utilties, protocol buffers, etc.
 
 ### How
-Use a garden task to retrieve the artifacts, the a task in an exec mdule to copy them into it's ony build directory, which can then be accessed byway of build dependencies in any module that want these assets.
+Use a garden task to retrieve the artifacts from the container, thne a task in an exec mdule to copy them into it's own build directory which can then be accessed byway of build dependencies in any module that needs these assets.
 
 ### Steps
 1. Create a container module to build the assets 
+1. Create a tast to retrieve the artifacts
 1. Create an exec module with a task to copy the assets into it's build directory
-1. Create a container module that copies the assets using build dependencies
+1. Create a container module that includes the assets as build dependencies
 1. Create an `update-lib` custom command to make it easy for devs to run the task
 1. Create a workflow that runs the task and deploys for CI
 
