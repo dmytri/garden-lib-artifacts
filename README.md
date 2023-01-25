@@ -33,7 +33,7 @@ Use a garden task to retrieve the artifacts from the container, thne a task in a
 `garden update-lib`
 
 #####  Expected Result
-- task `copy-lib-artifacts` runs and copies lib-artifcats into build directory
+- task `copy-lib-artifacts` runs and copies lib-artifacts into build directory
 
 #### Command
 `garden deploy`
@@ -53,7 +53,7 @@ Use a garden task to retrieve the artifacts from the container, thne a task in a
 `garden run workflow deploy --env default`
 
 #####  Expected Result
-- runs `copy-lib-artifacts` and deploys app
+- runs `copy-lib-artifacts` and deploys app to default environment
 
 
 ## See
