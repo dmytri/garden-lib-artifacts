@@ -11,10 +11,10 @@ tasks:
 ---
 kind: Module
 type: exec
-name: copy-lib
+name: build-lib
 include: [.]
 tasks:
-  - name: copy-lib
+  - name: copy-lib-artifacts
     dependencies:
       - build-lib-artifacts
     command:

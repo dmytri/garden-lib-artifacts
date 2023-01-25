@@ -1,0 +1,7 @@
+kind: Workflow
+name: deploy 
+steps:
+  - script: |
+      echo "add script to connect to cluster here ..."
+  - command: [run, task, copy-lib-artifacts]  
+  - command: [deploy]

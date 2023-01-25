@@ -3,7 +3,7 @@ type: container
 name: app
 build:
   dependencies:
-      - name: copy-lib
+      - name: build-lib
         copy:
           - source: build/lib
             target: src/lib
