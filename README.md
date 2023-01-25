@@ -4,18 +4,21 @@
 ## Example Explanation
 
 ### Question
-*How might we* pre-seed a volume with some assets and make them available for services.
+*How might we* use assets built in a different module as build dependencies?
 
 ### Why
-You have some assets you would like to make availale to one or more pods without needing to rebuild containers to update them.
+You have some assets built in one module you would like to make availale to one
+or more pods, such as libraries, fixtures, utilties, protocol buffers, etc.
 
 ### How
-Use a garden task and a utility container to copy the assets to a volume
+Use a garden task to retrieve the artifacts, the a task in an exec mdule to copy them into it's ony build directory, which can then be accessed byway of build dependencies in any module that want these assets.
 
 ### Steps
-1. Create a minimal Dockerfile with the assets
-1. Create a garden task to mount the volume and copy the assets to it
-1. make the task a dependency of the service that needs the assets
+1. Create a container module to build the assets 
+1. Create an exec module with a task to copy the assets into it's build directory
+1. Create a container module that copies the assets using build dependencies
+1. Create an `update-lib` custom command to make it easy for devs to run the task
+1. Create a workflow that runs the task and deploys for CI
 
 ## Running Example
 
@@ -23,29 +26,34 @@ Use a garden task and a utility container to copy the assets to a volume
 
 - minikube
 
-Note: this exampe uses the hostPath storage class that comes with minikube, so
-this is a one node solution, to use in a real scenario with multiple nodes, a
-distributed storage class would be required.
+### For Developers
+
+#### Command
+`garden update-lib`
+
+#####  Expected Result
+- task `copy-lib-artifacts` runs and copies lib-artifcats into build directory
 
 #### Command
 `garden deploy`
 
-#####  Expected Result
-- task `seed-volume-lib` runs and seeds volume-lib
-- service `app` is deployed with `volume-lib` mounted cotaining a test shell script
+##### Expected Result
+- app is deployed with assets from lib-artifacts
 
 #### Command
 `garden test-lib`
 
 ##### Expected Result
-- test shell script is executed on `app` container
+- test script from lib-artifacts runs from app container
+
+### For CI
 
 #### Command
-`garden update-lib`
-- task `seed-volume-lib` runs and updates volume-lib
+`garden run workflow deploy --env default`
 
-##### Expected Result
-- any modified or added assets in lib/src writen to `volume-lib`
+#####  Expected Result
+- runs `copy-lib-artifacts` and deploys app
+
 
 ## See
 - [lib/Dockerfile](lib/Dockerfile)
@@ -53,5 +61,6 @@ distributed storage class would be required.
 - [app/Dockerfile](app/Dockerfile)
 - [app/garden.yml](app/garden.yml)
 - [https://docs.garden.io/using-garden/tasks](https://docs.garden.io/using-garden/tasks)
-- [https://docs.garden.io/guides/container-modules#mounting-volumes](https://docs.garden.io/guides/container-modules#mounting-volumes)
+- [https://docs.garden.io/guides/container-modules](https://docs.garden.io/guides/container-modules)
+- [https://docs.garden.io/reference/module-types/exec](https://docs.garden.io/reference/module-types/exec)
 - [https://garden.io](https://garden.io)
