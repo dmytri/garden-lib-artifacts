@@ -12,7 +12,6 @@ tasks:
 kind: Module
 type: exec
 name: copy-lib
-local: true
 include: [.]
 tasks:
   - name: copy-lib
@@ -22,7 +21,8 @@ tasks:
       - /bin/sh
       - -c
       - |-
-        'mkdir -p build/lib'
-        'cp -r ../.garden/artifacts/lib-artifacts/* build/lib/'
+        echo "copying lib..."
+        mkdir -p build/lib
+        cp -r ../../artifacts/lib-artifacts/* build/lib/
 
 
