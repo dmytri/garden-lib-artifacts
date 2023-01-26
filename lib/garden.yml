@@ -15,18 +15,11 @@ name: build-lib
 include: [.]
 build:
   command:
-    - garden
-    - run
-    - task
-    - copy-lib-artifacts
-tasks:
-  - name: copy-lib-artifacts
-    dependencies:
-      - build-lib-artifacts
-    command:
-      - /bin/sh
-      - -c
-      - |-
-        echo "copying lib..."
-        mkdir -p build/lib
-        cp -r ../../artifacts/lib-artifacts/* build/lib/
+    - /bin/sh
+    - -c
+    - |-
+      echo "prepare artifacts..."
+      garden run task build-lib-artifacts
+      mkdir -p build/lib
+      cp -r ../../artifacts/lib-artifacts/* build/lib/
+
