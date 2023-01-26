@@ -15,9 +15,9 @@ Use a garden task to retrieve the artifacts from the container, thne a task in a
 
 ### Steps
 1. Create a container module to build the assets 
-1. Create a tast to retrieve the artifacts
+1. Create a task to retrieve the artifacts
 1. Create an exec module with a build command to run above task and copy the assets into it's build directory
-1. Create a container module that includes the exec module as a build dependencies
+1. Create a container module that includes the exec module as a build dependency
 1. Create an `test-lib` custom command to make run the test script from the app container
 
 ## Running Example
