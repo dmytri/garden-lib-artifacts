@@ -1,13 +1,4 @@
 kind: Command
-name: update-lib
-description:
-  short: update lib artifacts
-gardenCommand:
-  - run
-  - task
-  - copy-lib-artifacts
----
-kind: Command
 name: test-lib
 description:
   short: run test script from artifacts
