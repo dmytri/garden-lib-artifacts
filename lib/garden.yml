@@ -13,6 +13,12 @@ kind: Module
 type: exec
 name: build-lib
 include: [.]
+build:
+  command:
+    - garden
+    - run
+    - task
+    - copy-lib-artifacts
 tasks:
   - name: copy-lib-artifacts
     dependencies:
@@ -24,5 +30,3 @@ tasks:
         echo "copying lib..."
         mkdir -p build/lib
         cp -r ../../artifacts/lib-artifacts/* build/lib/
-
-
