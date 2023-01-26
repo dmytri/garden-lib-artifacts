@@ -16,24 +16,15 @@ Use a garden task to retrieve the artifacts from the container, thne a task in a
 ### Steps
 1. Create a container module to build the assets 
 1. Create a tast to retrieve the artifacts
-1. Create an exec module with a task to copy the assets into it's build directory
-1. Create a container module that includes the assets as build dependencies
-1. Create an `update-lib` custom command to make it easy for devs to run the task
-1. Create a workflow that runs the task and deploys for CI
+1. Create an exec module with a build command to run above task and copy the assets into it's build directory
+1. Create a container module that includes the exec module as a build dependencies
+1. Create an `test-lib` custom command to make run the test script from the app container
 
 ## Running Example
 
 ### Requires
 
 - minikube
-
-### For Developers
-
-#### Command
-`garden update-lib`
-
-#####  Expected Result
-- task `copy-lib-artifacts` runs and copies lib-artifacts into build directory
 
 #### Command
 `garden deploy`
@@ -46,15 +37,6 @@ Use a garden task to retrieve the artifacts from the container, thne a task in a
 
 ##### Expected Result
 - test script from lib-artifacts runs from app container
-
-### For CI
-
-#### Command
-`garden run workflow deploy --env default`
-
-#####  Expected Result
-- runs `copy-lib-artifacts` and deploys app to default environment
-
 
 ## See
 - [lib/Dockerfile](lib/Dockerfile)
