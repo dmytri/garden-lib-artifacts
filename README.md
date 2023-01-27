@@ -11,7 +11,7 @@ You have some assets built in one module you would like to make availale to one
 or more other modules, such as libraries, fixtures, utilties, protocol buffers, etc.
 
 ### How
-Use a garden task to retrieve the artifacts from the container, thne a task in an exec mdule to copy them into it's own build directory which can then be accessed byway of build dependencies in any module that needs these assets.
+Use a garden task to retrieve the artifacts from the container, thne a build command in an exec mdule to copy them into it's own build directory which can then be accessed byway of build dependencies in any module that needs these assets.
 
 ### Steps
 1. Create a container module to build the assets 
